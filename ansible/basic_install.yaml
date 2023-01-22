@@ -1,0 +1,24 @@
+---
+- name : Basic Configuration after ec2 launch
+  hosts: test-servers
+  become: true
+  tasks:
+      - name: Update System with Yum
+        ansible.builtin.yum:
+          update_cache: true
+
+      - name: Upgrade all packages
+        ansible.builtin.yum:
+          name: '*'
+          state: latest 
+
+      - name: Install Nginx from epel-repo
+        ansible.builtin.yum:
+          name: nginx
+          state: latest
+
+      - name: To enable and Start Nginx
+        service:
+          name: nginx
+          state: started
+          enabled: true    

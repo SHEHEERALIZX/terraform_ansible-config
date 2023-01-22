@@ -1,0 +1,23 @@
+---
+- name: Update Amazon Linux 2 and install EPEL
+  hosts: all
+  become: true
+  tasks:
+    - name: Update all packages
+      yum:
+        name: '*'
+        state: latest
+    - name: Remove EPEL repository
+      yum_repository:
+        name: epel
+        state: absent
+    - name: Add yum repository
+      yum_repository:
+        name: epel
+        description: Repository for package_name
+        baseurl: 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm'
+        gpgcheck: no
+        enabled: yes
+        priority: 10    
+
+    

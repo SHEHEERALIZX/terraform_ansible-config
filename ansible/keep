@@ -1,0 +1,13 @@
+To fix this error on Amazon Linux 2, you can try the following steps:
+
+Verify that the system is connected to the internet by running the command ping google.com.
+Run the command sudo yum update to update the package information on the system.
+Try to install the epel-release package by running the command sudo yum install epel-release.
+If the above steps don't work, you can try adding the EPEL repository manually by creating a file called epel.repo in the /etc/yum.repos.d/ directory and adding the following lines:
+
+[epel]
+name=Extra Packages for Enterprise Linux 7 - $basearch
+baseurl=https://dl.fedoraproject.org/pub/epel/7/$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
